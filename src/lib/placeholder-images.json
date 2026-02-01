@@ -1,3 +1,40 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "heroImage",
+      "description": "A vibrant green field under a clear sky.",
+      "imageUrl": "https://images.unsplash.com/photo-1571341514065-b710ff6c07d4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxncmVlbiUyMGZpZWxkfGVufDB8fHx8MTc2OTkzNTY5NXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "green field"
+    },
+    {
+      "id": "productCategoryInsecticides",
+      "description": "Close-up of a pesticide bottle on a farm.",
+      "imageUrl": "https://images.unsplash.com/photo-1755931359594-852c73c6609c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxwZXN0aWNpZGUlMjBhZ3JpY3VsdHVyZXxlbnwwfHx8fDE3Njk5NjIzODd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "pesticide agriculture"
+    },
+    {
+      "id": "productCategoryFungicides",
+      "description": "Farmer spraying crops in a field.",
+      "imageUrl": "https://images.unsplash.com/photo-1597832869467-fa6337689f49?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxzcHJheWluZyUyMGNyb3BzfGVufDB8fHx8MTc2OTk1NTI5OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "spraying crops"
+    },
+    {
+      "id": "productCategoryHerbicides",
+      "description": "Weed-free crop rows.",
+      "imageUrl": "https://images.unsplash.com/photo-1761634853032-c4a6c965ba57?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjbGVhbiUyMGNyb3BzfGVufDB8fHx8MTc2OTk2MjM4N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "clean crops"
+    },
+    {
+      "id": "productCategoryNutrition",
+      "description": "A bag of fertilizer or plant nutrients.",
+      "imageUrl": "https://images.unsplash.com/photo-1768264312532-7780b660b74a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxmZXJ0aWxpemVyJTIwYmFnfGVufDB8fHx8MTc2OTk1NTI5OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "fertilizer bag"
+    },
+    {
+      "id": "testimonialFarmer1",
+      "description": "Portrait of a smiling farmer.",
+      "imageUrl": "https://images.unsplash.com/photo-1510583085145-1b347ee019ff?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxzbWlsaW5nJTIwZmFybWVyfGVufDB8fHx8MTc2OTk0NTY5N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "smiling farmer"
+    }
+  ]
 }
