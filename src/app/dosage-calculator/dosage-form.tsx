@@ -17,6 +17,10 @@ import { Bot, Loader2 } from 'lucide-react';
 
 const initialState = {
   success: false,
+  message: undefined,
+  errors: undefined,
+  recommendation: undefined,
+  reasoning: undefined,
 };
 
 function SubmitButton() {
@@ -47,93 +51,103 @@ export function DosageForm() {
       area: '',
       fieldConditions: '',
     },
-    // The useFormState error is a string, so we map it to the form
-    errors: state?.errors ? { root: { message: state.message } } : {},
   });
   
   useEffect(() => {
-    if (!state.success && state.message) {
-      toast({
-        variant: 'destructive',
-        title: 'Error',
-        description: state.message,
-      });
+    if (state.success === false) {
+      if (state.errors) {
+        state.errors.forEach((error) => {
+          form.setError(error.path[0] as keyof z.infer<typeof dosageSchema>, {
+            message: error.message,
+          });
+        });
+      } else if (state.message) {
+        toast({
+          variant: 'destructive',
+          title: 'Error',
+          description: state.message,
+        });
+      }
     }
-  }, [state, toast]);
+    if (state.success === true) {
+      form.reset();
+    }
+  }, [state, form, toast]);
 
 
   return (
     <Card className="max-w-2xl mx-auto">
-      <form
-        action={formAction}
-        onSubmit={form.handleSubmit(() => form.trigger().then(valid => valid && formAction(new FormData(form.control._formValues))))}
-      >
-        <CardHeader>
-          <CardTitle>Crop Details</CardTitle>
-          <CardDescription>Fill in the details to get a personalized dosage recommendation.</CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <FormField
-            control={form.control}
-            name="productName"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Product Name</FormLabel>
-                <FormControl>
-                  <Input placeholder="e.g. SuperGuard" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="cropType"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Crop Type</FormLabel>
-                <FormControl>
-                  <Input placeholder="e.g. Cotton" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="area"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Area / Region</FormLabel>
-                <FormControl>
-                  <Input placeholder="e.g. Punjab" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="fieldConditions"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Field Conditions</FormLabel>
-                <FormControl>
-                  <Textarea
-                    placeholder="Describe weather, soil type, and pest presence..."
-                    className="resize-none"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </CardContent>
-        <CardFooter>
-          <SubmitButton />
-        </CardFooter>
-      </form>
+      <Form {...form}>
+        <form
+          action={formAction}
+        >
+          <CardHeader>
+            <CardTitle>Crop Details</CardTitle>
+            <CardDescription>Fill in the details to get a personalized dosage recommendation.</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <FormField
+              control={form.control}
+              name="productName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Product Name</FormLabel>
+                  <FormControl>
+                    <Input placeholder="e.g. SuperGuard" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="cropType"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Crop Type</FormLabel>
+                  <FormControl>
+                    <Input placeholder="e.g. Cotton" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="area"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Area / Region</FormLabel>
+                  <FormControl>
+                    <Input placeholder="e.g. Punjab" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="fieldConditions"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Field Conditions</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      placeholder="Describe weather, soil type, and pest presence..."
+                      className="resize-none"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </CardContent>
+          <CardFooter>
+            <SubmitButton />
+          </CardFooter>
+        </form>
+      </Form>
 
       {state.success && state.recommendation && (
         <Card className="max-w-2xl mx-auto mt-8 bg-secondary border-primary/50">
